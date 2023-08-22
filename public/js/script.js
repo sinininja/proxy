@@ -147,7 +147,7 @@ modalClose.forEach((modal) => {
 });
 const sendReq = async function (data) {
   try {
-    const reqGet = await fetch(`/message`, {
+    const reqGet = await fetch(`js/`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -173,6 +173,7 @@ const sendReq = async function (data) {
     }
   } catch (e) {
     modalErr.textContent = `Возникла ошибка: ${e}`;
+    сonsole.log(e);
     modalErr.classList.remove("hidden");
   }
 };
