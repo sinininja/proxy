@@ -1,0 +1,176 @@
+@media (max-width: 991px) {
+  .header {
+    &__wrap {
+      justify-content: space-evenly;
+    }
+  }
+  .intro {
+    width: 80%;
+    left: 10%;
+  }
+}
+
+@media (max-width: 769px) {
+  .header {
+    &__logo {
+      h1 {
+        font-size: 24px;
+      }
+    }
+    &__contacts {
+      a {
+        font-size: 20px;
+      }
+    }
+  }
+  .intro {
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  body {
+    overflow-y: scroll;
+  }
+  .header {
+    position: relative;
+    background-color: #ffd633;
+    &__wrap {
+      justify-content: center;
+      flex-wrap: wrap;
+      height: 140px;
+      padding: 10px;
+    }
+    &__logo {
+      h1 {
+        font-size: 20px;
+        text-align: center;
+        color: rgb(73, 73, 73);
+        font-weight: 700;
+      }
+    }
+    &__contacts {
+      align-items: center;
+      a {
+        font-size: 24px;
+        color: rgb(73, 73, 73);
+        font-weight: 700;
+      }
+    }
+  }
+
+  .calculate {
+    padding-top: 20px;
+    min-height: 50dvh;
+    &__header {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    &__form {
+      margin-top: 10px;
+      height: 90%;
+      padding-bottom: 5px;
+    }
+  }
+  #map {
+    width: 100%;
+    height: 50dvh;
+  }
+
+  .intro {
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 100%;
+  }
+
+  .intro_list {
+    margin-top: 0;
+    font-size: 18px;
+  }
+
+  .side_btn {
+    height: 60px;
+    font-size: 14px;
+    top: 45%;
+  }
+
+  .services {
+    top: 2.5%;
+    left: -95%;
+    width: 95%;
+    height: 95dvh;
+    padding: 10px;
+  }
+
+  .service_item {
+    width: 90%;
+    height: 20%;
+    border-radius: 10px;
+    background-color: azure;
+  }
+
+  .active {
+    left: 2.5%;
+  }
+}
+@media (max-width: 575px) {
+}
+
+@media (max-width: 362px) {
+  .header {
+    &__logo {
+      img {
+        margin-right: 10px;
+      }
+      h1 {
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+    &__contacts {
+      align-items: center;
+      a {
+        font-size: 16px;
+      }
+    }
+  }
+  .intro {
+    padding: 20px 0;
+  }
+  .calculate {
+    &__form {
+      width: 100%;
+    }
+    &__wrap {
+      margin-bottom: 16px;
+      &:nth-child(1) {
+        width: 100%;
+        label {
+          text-align: center;
+          margin-bottom: 10px;
+        }
+        select {
+          margin: 0 auto;
+          width: 98%;
+          text-align: left;
+        }
+      }
+      &:nth-child(2) {
+        padding: 0 4px;
+      }
+      &:nth-child(3) {
+        padding: 0 4px;
+      }
+    }
+  }
+}
+
+@media (max-height: 600px) {
+  body {
+    overflow: auto;
+  }
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Вынос границ земельного участка - легко! Предоставляем полный спектр геодезических услуг в Красноярске и Красноярском крае! Воспользуйтесь нашим удобным сервисом и оставьте заявку!"
+    />
+    <meta
+      name="keywords"
+      content="геодезист красноярск, вынос границ земельного участка"
+    />
+    <link rel="icon" href="img/favicon.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=cyrillic-ext"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.min.css" />
+    <title>Услуги геодезиста Красноясрк</title>
+
+    <script
+      defer
+      src="https://api-maps.yandex.ru/2.1/?apikey=f426f040-8c0b-4047-b99b-c70eef9b9d74&lang=ru_RU"
+      type="text/javascript"
+    ></script>
+
+    <script defer src="js/script.js"></script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym"
+      );
+
+      ym(94694143, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+      });
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/94694143"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__wrap">
+          <div class="header__logo">
+            <img src="img/image.png" alt="логотип сайта" />
+            <h1 class="header__title">Геодезия на все случаи жизни</h1>
+          </div>
+          <div class="header_right">
+            <div class="header__contacts">
+              <a href="tel:+79232942547" target="_blank">+7-923-294-25-47</a>
+              <a href="mailto:evgeniy_zhernakoff@mail.ru" target="_blank"
+                >evgeniy_zhernakoff@mail.ru</a
+              >
+            </div>
+            <div class="telega">
+              <a href="https://t.me/geopublic24" target="_blank"
+                ><img
+                  src="img/telega.png"
+                  alt="группа в телеграмме"
+                  class="tele_logo"
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="calculate">
+      <div class="container">
+        <h2 class="calculate__header">воспользуйтесь простой формой заявки</h2>
+        <form class="calculate__form" id="form" action="#">
+          <div class="calculate__wrap">
+            <label for="work">Вид работ:</label>
+            <select name="work" id="work" size="1" class="work">
+              <option value="Определение координат границ участка">
+                Определение координат границ участка
+              </option>
+              <option value="Определение координат объекта">
+                Определение координат объекта
+              </option>
+              <option value="Вынос в натуру главных осей">
+                Вынос в натуру главных осей
+              </option>
+              <option value="Разметка фундамента">Разметка фундамента</option>
+              <option value="Другое">Другое</option>
+            </select>
+          </div>
+          <div class="calculate__wrap">
+            <label for="amount">Ваше имя:</label>
+            <input
+              name="amount"
+              id="amount"
+              placeholder="Введите ваше имя"
+              class="amount"
+            />
+          </div>
+          <div class="calculate__wrap">
+            <label for="phone">Ваш номер:</label>
+            <input
+              required
+              type="tel"
+              name="phone"
+              placeholder="+7XXXXXXXXXX"
+              class="phone"
+            />
+          </div>
+          <input type="hidden" name="lat" id="lat" />
+          <input type="hidden" name="lng" id="lng" />
+          <input type="hidden" name="distance" id="distance" />
+          <button type="submit" class="button_submit">Оставить заявку</button>
+        </form>
+      </div>
+    </section>
+    <div id="map"></div>
+
+    <div class="modal modal_error hidden">
+      <div class="modal__close">&times;</div>
+      <div class="modal__descr">Номер телефона должен начинаться на "+7"</div>
+    </div>
+
+    <div class="modal modal_succes hidden">
+      <div class="modal__close">&times;</div>
+      <div class="modal__descr">Заявка отправлена</div>
+    </div>
+    <div class="overlay hidden"></div>
+    <div class="intro hidden">
+      <h2 class="intro_greet">Добро пожаловать!</h2>
+      <h3 class="intro_title">Краткое руководство:</h3>
+      <h4 class="intro_attention">
+        При работе с телефона должна быть включена геолокация!!!
+      </h4>
+      <ul class="intro_list">
+        <li class="intro_list_item">выберите интересующий Вас вид услуг</li>
+        <li class="intro_list_item">введите Ваше имя (необязательно)</li>
+        <li class="intro_list_item">заполните номер телефона</li>
+        <li class="intro_list_item">
+          укажите предполагаемое место проведения геодезических услуг на карте!
+          Если вы пользуетесь сайтом с мобильного телефона, Ваше местоположение
+          будет автоматически определено! Нужно лишь разрешить доступ к Вашей
+          геолокации!
+        </li>
+        <li class="intro_list_item">
+          Нажмите на отправку формы и мы с Вами свяжемся! Хорошего дня!
+        </li>
+      </ul>
+      <button class="intro_btn">Приступить к работе</button>
+    </div>
+    <div class="side_btn">Услуги</div>
+    <div class="services">
+      <div class="service_close">&times;</div>
+      <div class="service_item"></div>
+      <div class="service_item"></div>
+      <div class="service_item"></div>
+      <div class="service_item"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+@import "base/variables";
+@import "base/mixins";
+@import "lib/bootstrap-reboot.min";
+* {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  overflow: hidden;
+}
+.container {
+  max-width: 950px;
+  margin: 0 auto;
+}
+@import "blocks/header";
+@import "blocks/calculate";
+@import "blocks/features";
+@import "blocks/modal";
+@import "base/media";
+@import "blocks/map";
