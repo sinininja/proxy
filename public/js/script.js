@@ -137,6 +137,99 @@ if (navigator.geolocation) {
       alert("ошибка navigator.geolocation");
     }
   );
+} else {
+  ymaps.ready(init);
+  function init() {
+    // Создание карты.
+    const myMap = new ymaps.Map(
+      "map",
+      {
+        // Координаты центра карты.
+        // Порядок по умолчанию: «широта, долгота».
+        // Чтобы не определять координаты центра карты вручную,
+        // воспользуйтесь инструментом Определение координат.
+        center: startCoords,
+        // type: 'hybrid',
+        // Уровень масштабирования. Допустимые значения:
+        // от 0 (весь мир) до 19.
+        zoom: 13,
+      },
+      {
+        searchControlProvider: "yandex#search",
+      }
+    );
+
+    myPlacemark = new ymaps.Placemark(
+      coords,
+      {
+        iconCaption: "Вы здесь",
+      },
+      {
+        preset: "islands#greenDotIconWithCaption",
+      }
+    );
+    myMap.geoObjects.add(myPlacemark);
+
+    multiRoute = new ymaps.multiRouter.MultiRoute({
+      referencePoints: [`${[...startCoords]}`, `${lat},${lng}`],
+      params: {
+        results: 1,
+      },
+    });
+    // console.log(multiRoute);
+    // myMap.geoObjects.add(multiRoute);
+    // Повесим обработчик на событие построения маршрута.
+
+    myMap.events.add("click", function (event) {
+      console.log(event.get("coords"));
+
+      [lat, lng] = event.get("coords");
+      inputLat.value = lat;
+      inputLng.value = lng;
+      if (newPlacemark) {
+        myMap.geoObjects.remove(newPlacemark);
+      }
+      newPlacemark = new ymaps.Placemark(
+        [lat, lng],
+        {
+          iconCaption: "Кординаты зафиксированы",
+        },
+        {
+          preset: "islands#greenDotIconWithCaption",
+        }
+      );
+
+      myMap.geoObjects.add(newPlacemark);
+
+      multiRoute = new ymaps.multiRouter.MultiRoute({
+        referencePoints: [`${[...startCoords]}`, `${lat},${lng}`],
+        params: {
+          results: 1,
+        },
+      });
+      // myMap.geoObjects.add(multiRoute);
+      multiRoute.model.events.add("requestsuccess", function () {
+        let activeRoute = multiRoute.getActiveRoute();
+        if (activeRoute) {
+          // Получим протяженность маршрута.
+          distance = multiRoute.getActiveRoute().properties.get("distance");
+          // Вычислим стоимость доставки.
+          console.log(length);
+          inputDistance.value = Math.ceil(distance.value / 1000);
+        }
+      });
+    });
+    multiRoute.model.events.add("requestsuccess", function () {
+      let activeRoute = multiRoute.getActiveRoute();
+      if (activeRoute) {
+        // Получим протяженность маршрута.
+        distance = multiRoute.getActiveRoute().properties.get("distance");
+        // Вычислим стоимость доставки.
+        inputDistance.value = Math.ceil(distance.value / 1000);
+        console.log(distance);
+      }
+    });
+  }
 }
 modalClose.forEach((modal) => {
   modal.addEventListener("click", () => {
