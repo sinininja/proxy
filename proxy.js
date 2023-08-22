@@ -23,8 +23,7 @@ const app = express();
 //     next();
 //   }
 // });
-// const PORT = 80;
-// const PORT_SSL = 4000;
+const PORT = 4337;
 
 // const options = {
 //   key: fs.readFileSync("./ssl_cert/privkey.pem", "utf-8"),
@@ -113,9 +112,9 @@ app.post("/message", (req, res) => {
   res.end();
 });
 
-// app.listen(PORT, () => {
-//   console.log(`Starting Proxy Server at: ${PORT}`);
-// });
+app.listen(PORT, () => {
+  console.log(`Starting Proxy Server at: ${PORT}`);
+});
 // server.listen(PORT_SSL, () => {
 //   console.log(`Starting Proxy Server at: ${PORT_SSL}`);
 // });
