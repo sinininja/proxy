@@ -26,17 +26,17 @@ const app = express();
 // });
 const PORT = 4337;
 
-const options = {
-  key: fs.readFileSync("./ssl_cert/privkey.pem", "utf-8"),
-  cert: fs.readFileSync("./ssl_cert/fullchain.pem", "utf-8"),
-};
+// const options = {
+//   key: fs.readFileSync("./ssl_cert/privkey.pem", "utf-8"),
+//   cert: fs.readFileSync("./ssl_cert/fullchain.pem", "utf-8"),
+// };
 
-const server = https.createServer(options, app);
+// const server = https.createServer(options, app);
 
 // app.get("/", (req, res) => {
 //   res.send("Hello from express server.");
 // });
-// app.use(express.static("public"));
+app.use(express.static("public"));
 app.use(express.json());
 app.use(helmet());
 app.disable("x-powered-by");
@@ -49,7 +49,7 @@ app.all("/*", function (req, res, next) {
 // app.get("/", (req, res) => {
 //   console.log(req.json());
 // });
-app.post("../proxy.js", (req, res) => {
+app.post("/message", (req, res) => {
   // console.log(req.body);
   const data = req.body;
   const phone = data.phone
@@ -118,9 +118,9 @@ app.post("../proxy.js", (req, res) => {
   res.end();
 });
 
-// app.listen(PORT, () => {
-//   console.log(`Starting Proxy Server at: ${PORT}`);
-// });
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Starting Proxy Server at: ${PORT}`);
 });
+// server.listen(PORT, () => {
+//   console.log(`Starting Proxy Server at: ${PORT}`);
+// });
