@@ -43,7 +43,7 @@ app.disable("x-powered-by");
 // app.get("/", (req, res) => {
 //   console.log(req.json());
 // });
-app.post("/", (req, res) => {
+app.post("http://45.84.226.181:4337/", (req, res) => {
   // console.log(req.body);
   const data = req.body;
   const phone = data.phone

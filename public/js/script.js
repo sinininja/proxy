@@ -147,7 +147,7 @@ modalClose.forEach((modal) => {
 });
 const sendReq = async function (data) {
   try {
-    const reqGet = await fetch(`/`, {
+    const reqGet = await fetch(`http://45.84.226.181:4337/`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
