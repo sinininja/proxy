@@ -39,10 +39,12 @@ const navigator = function (position) {
     lat = inputLat.value = latitude;
     lng = inputLng.value = longitude;
     coords = [lat, lng];
+    console.log(1);
   } else {
     lat = startCoords[0];
     lng = startCoords[1];
     coords = [lat, lng];
+    console.log(2);
   }
   ymaps.ready(init);
   function init() {
