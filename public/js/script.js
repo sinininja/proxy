@@ -33,7 +33,7 @@ phone.addEventListener("click", function (e) {
   phone.selectionStart = phone.value.length;
 });
 
-const navigator = function (position) {
+const navigate = function (position) {
   if (position) {
     const { latitude, longitude } = position.coords;
     lat = inputLat.value = latitude;
@@ -141,8 +141,8 @@ const navigator = function (position) {
 };
 
 if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(navigator, function () {
-    navigator(startCoords);
+  navigator.geolocation.getCurrentPosition(navigate, function () {
+    navigate();
   });
 }
 modalClose.forEach((modal) => {
