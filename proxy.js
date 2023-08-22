@@ -3,6 +3,7 @@
 const https = require("https");
 const fs = require("fs");
 const express = require("express");
+const cors = require("cors");
 const helmet = require("helmet");
 const { key } = require("./key");
 const app = express();
@@ -39,7 +40,12 @@ const server = https.createServer(options, app);
 app.use(express.json());
 app.use(helmet());
 app.disable("x-powered-by");
-
+app.use(cors());
+app.all("/*", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 // app.get("/", (req, res) => {
 //   console.log(req.json());
 // });
