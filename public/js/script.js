@@ -23,6 +23,7 @@ let myPlacemark;
 let newPlacemark;
 let multiRoute;
 let distance;
+let coords;
 const startCoords = [56.060392, 92.940353];
 const test = document.getElementById("test");
 
@@ -32,112 +33,17 @@ phone.addEventListener("click", function (e) {
   phone.selectionStart = phone.value.length;
 });
 
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      const { latitude, longitude } = position.coords;
-      lat = inputLat.value = latitude;
-      lng = inputLng.value = longitude;
-      const coords = [lat, lng];
-
-      ymaps.ready(init);
-      function init() {
-        // Создание карты.
-        const myMap = new ymaps.Map(
-          "map",
-          {
-            // Координаты центра карты.
-            // Порядок по умолчанию: «широта, долгота».
-            // Чтобы не определять координаты центра карты вручную,
-            // воспользуйтесь инструментом Определение координат.
-            center: coords,
-            // type: 'hybrid',
-            // Уровень масштабирования. Допустимые значения:
-            // от 0 (весь мир) до 19.
-            zoom: 13,
-          },
-          {
-            searchControlProvider: "yandex#search",
-          }
-        );
-
-        myPlacemark = new ymaps.Placemark(
-          coords,
-          {
-            iconCaption: "Вы здесь",
-          },
-          {
-            preset: "islands#greenDotIconWithCaption",
-          }
-        );
-        myMap.geoObjects.add(myPlacemark);
-
-        multiRoute = new ymaps.multiRouter.MultiRoute({
-          referencePoints: [`${[...startCoords]}`, `${lat},${lng}`],
-          params: {
-            results: 1,
-          },
-        });
-        // console.log(multiRoute);
-        // myMap.geoObjects.add(multiRoute);
-        // Повесим обработчик на событие построения маршрута.
-
-        myMap.events.add("click", function (event) {
-          console.log(event.get("coords"));
-
-          [lat, lng] = event.get("coords");
-          inputLat.value = lat;
-          inputLng.value = lng;
-          if (newPlacemark) {
-            myMap.geoObjects.remove(newPlacemark);
-          }
-          newPlacemark = new ymaps.Placemark(
-            [lat, lng],
-            {
-              iconCaption: "Кординаты зафиксированы",
-            },
-            {
-              preset: "islands#greenDotIconWithCaption",
-            }
-          );
-
-          myMap.geoObjects.add(newPlacemark);
-
-          multiRoute = new ymaps.multiRouter.MultiRoute({
-            referencePoints: [`${[...startCoords]}`, `${lat},${lng}`],
-            params: {
-              results: 1,
-            },
-          });
-          // myMap.geoObjects.add(multiRoute);
-          multiRoute.model.events.add("requestsuccess", function () {
-            let activeRoute = multiRoute.getActiveRoute();
-            if (activeRoute) {
-              // Получим протяженность маршрута.
-              distance = multiRoute.getActiveRoute().properties.get("distance");
-              // Вычислим стоимость доставки.
-              console.log(length);
-              inputDistance.value = Math.ceil(distance.value / 1000);
-            }
-          });
-        });
-        multiRoute.model.events.add("requestsuccess", function () {
-          let activeRoute = multiRoute.getActiveRoute();
-          if (activeRoute) {
-            // Получим протяженность маршрута.
-            distance = multiRoute.getActiveRoute().properties.get("distance");
-            // Вычислим стоимость доставки.
-            inputDistance.value = Math.ceil(distance.value / 1000);
-            console.log(distance);
-          }
-        });
-      }
-    },
-    function () {
-      alert("ошибка navigator.geolocation");
-    }
-  );
-} else {
+const navigator = function (position) {
+  if (position) {
+    const { latitude, longitude } = position.coords;
+    lat = inputLat.value = latitude;
+    lng = inputLng.value = longitude;
+    coords = [lat, lng];
+  } else {
+    lat = startCoords[0];
+    lng = startCoords[1];
+    coords = [lat, lng];
+  }
   ymaps.ready(init);
   function init() {
     // Создание карты.
@@ -148,7 +54,7 @@ if (navigator.geolocation) {
         // Порядок по умолчанию: «широта, долгота».
         // Чтобы не определять координаты центра карты вручную,
         // воспользуйтесь инструментом Определение координат.
-        center: startCoords,
+        center: coords,
         // type: 'hybrid',
         // Уровень масштабирования. Допустимые значения:
         // от 0 (весь мир) до 19.
@@ -230,6 +136,12 @@ if (navigator.geolocation) {
       }
     });
   }
+};
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(navigator, function () {
+    navigator(startCoords);
+  });
 }
 modalClose.forEach((modal) => {
   modal.addEventListener("click", () => {
