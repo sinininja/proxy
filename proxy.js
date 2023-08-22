@@ -25,12 +25,12 @@ const app = express();
 // });
 const PORT = 4337;
 
-// const options = {
-//   key: fs.readFileSync("./ssl_cert/privkey.pem", "utf-8"),
-//   cert: fs.readFileSync("./ssl_cert/fullchain.pem", "utf-8"),
-// };
+const options = {
+  key: fs.readFileSync("./ssl_cert/privkey.pem", "utf-8"),
+  cert: fs.readFileSync("./ssl_cert/fullchain.pem", "utf-8"),
+};
 
-// const server = https.createServer(options, app);
+const server = https.createServer(options, app);
 
 // app.get("/", (req, res) => {
 //   res.send("Hello from express server.");
@@ -112,9 +112,9 @@ app.post("http://45.84.226.181:4337/", (req, res) => {
   res.end();
 });
 
-app.listen(PORT, () => {
+// app.listen(PORT, () => {
+//   console.log(`Starting Proxy Server at: ${PORT}`);
+// });
+server.listen(PORT_SSL, () => {
   console.log(`Starting Proxy Server at: ${PORT}`);
 });
-// server.listen(PORT_SSL, () => {
-//   console.log(`Starting Proxy Server at: ${PORT_SSL}`);
-// });
