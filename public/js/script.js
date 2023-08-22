@@ -149,7 +149,7 @@ const sendReq = async function (data) {
   try {
     const reqGet = await fetch(`https://xn--24-ilci9b.xn--p1ai:4337`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
+      mode: "no-cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       credentials: "same-origin", // include, *same-origin, omit
       headers: {
@@ -173,7 +173,7 @@ const sendReq = async function (data) {
     }
   } catch (e) {
     modalErr.textContent = `Возникла ошибка: ${e}`;
-    сonsole.log(e);
+    // сonsole.log(e);
     modalErr.classList.remove("hidden");
   }
 };
