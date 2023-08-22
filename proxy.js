@@ -6,37 +6,37 @@ const express = require("express");
 const helmet = require("helmet");
 const { key } = require("./key");
 const app = express();
-function isSecure(req) {
-  if (req.headers["x-forwarded-proto"]) {
-    return req.headers["x-forwarded-proto"] === "https";
-  }
-  return req.secure;
-}
-app.use((req, res, next) => {
-  if (
-    process.env.NODE_ENV !== "development" &&
-    process.env.NODE_ENV !== "test" &&
-    !isSecure(req)
-  ) {
-    res.redirect(301, `https://${req.headers.host}${req.url}`);
-  } else {
-    next();
-  }
-});
-const PORT = 80;
-const PORT_SSL = 4000;
+// function isSecure(req) {
+//   if (req.headers["x-forwarded-proto"]) {
+//     return req.headers["x-forwarded-proto"] === "https";
+//   }
+//   return req.secure;
+// }
+// app.use((req, res, next) => {
+//   if (
+//     process.env.NODE_ENV !== "development" &&
+//     process.env.NODE_ENV !== "test" &&
+//     !isSecure(req)
+//   ) {
+//     res.redirect(301, `https://${req.headers.host}${req.url}`);
+//   } else {
+//     next();
+//   }
+// });
+// const PORT = 80;
+// const PORT_SSL = 4000;
 
-const options = {
-  key: fs.readFileSync("./ssl_cert/privkey.pem", "utf-8"),
-  cert: fs.readFileSync("./ssl_cert/fullchain.pem", "utf-8"),
-};
+// const options = {
+//   key: fs.readFileSync("./ssl_cert/privkey.pem", "utf-8"),
+//   cert: fs.readFileSync("./ssl_cert/fullchain.pem", "utf-8"),
+// };
 
-const server = https.createServer(options, app);
+// const server = https.createServer(options, app);
 
 // app.get("/", (req, res) => {
 //   res.send("Hello from express server.");
 // });
-app.use(express.static("public"));
+// app.use(express.static("public"));
 app.use(express.json());
 app.use(helmet());
 app.disable("x-powered-by");
@@ -113,9 +113,9 @@ app.post("/message", (req, res) => {
   res.end();
 });
 
-app.listen(PORT, () => {
-  console.log(`Starting Proxy Server at: ${PORT}`);
-});
-server.listen(PORT_SSL, () => {
-  console.log(`Starting Proxy Server at: ${PORT_SSL}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Starting Proxy Server at: ${PORT}`);
+// });
+// server.listen(PORT_SSL, () => {
+//   console.log(`Starting Proxy Server at: ${PORT_SSL}`);
+// });
