@@ -115,6 +115,6 @@ app.post("http://45.84.226.181:4337/", (req, res) => {
 // app.listen(PORT, () => {
 //   console.log(`Starting Proxy Server at: ${PORT}`);
 // });
-server.listen(PORT_SSL, () => {
+server.listen(PORT, () => {
   console.log(`Starting Proxy Server at: ${PORT}`);
 });
