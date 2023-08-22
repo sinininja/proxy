@@ -43,7 +43,7 @@ app.disable("x-powered-by");
 // app.get("/", (req, res) => {
 //   console.log(req.json());
 // });
-app.post("https://xn--24-ilci9b.xn--p1ai:4337", (req, res) => {
+app.post("/", (req, res) => {
   // console.log(req.body);
   const data = req.body;
   const phone = data.phone

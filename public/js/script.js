@@ -147,7 +147,7 @@ modalClose.forEach((modal) => {
 });
 const sendReq = async function (data) {
   try {
-    const reqGet = await fetch(`https://xn--24-ilci9b.xn--p1ai:4337`, {
+    const reqGet = await fetch(`/`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
