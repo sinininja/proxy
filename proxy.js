@@ -70,7 +70,7 @@ app.post("/message", (req, res) => {
     redirect: "follow", // manual, *follow, error
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
     body: JSON.stringify({
-      chat_id: "-981192490",
+      chat_id: "-1001945901741",
       text: `НОВЫЙ ЗАКАЗ:
 Вид работ: ${data.work},
 Имя клиента: ${data.amount},
@@ -92,7 +92,7 @@ app.post("/message", (req, res) => {
     redirect: "follow", // manual, *follow, error
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
     body: JSON.stringify({
-      chat_id: "-981192490",
+      chat_id: "-1001945901741",
       first_name: `${data.amount}`,
       phone_number: `${phone}`,
     }),
@@ -110,7 +110,7 @@ app.post("/message", (req, res) => {
     redirect: "follow", // manual, *follow, error
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
     body: JSON.stringify({
-      chat_id: "-981192490",
+      chat_id: "-1001945901741",
       text: `https://yandex.ru/maps/?ll=${data.lng}%2C${data.lat}&mode=whatshere&whatshere%5Bpoint%5D=${data.lng}%2C${data.lat}&whatshere%5Bzoom%5D=16&z=16`,
     }),
   });
