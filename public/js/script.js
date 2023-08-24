@@ -171,13 +171,11 @@ const sendReq = async function (data) {
     console.log(reqGet);
     const res = await reqGet.json();
     console.log(res);
-    if (reqGet.status === 200) {
-      amount.value = "";
-      phone.value = "";
+    amount.value = "";
+    phone.value = "";
 
-      modalSuc.classList.remove("hidden");
-      overlay.classList.remove("hidden");
-    }
+    modalSuc.classList.remove("hidden");
+    overlay.classList.remove("hidden");
   } catch (e) {
     modalErr.textContent = `Возникла ошибка: ${e}`;
     // сonsole.log(e);
