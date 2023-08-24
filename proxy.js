@@ -114,6 +114,8 @@ app.post("/message", (req, res) => {
       text: `https://yandex.ru/maps/?ll=${data.lng}%2C${data.lat}&mode=whatshere&whatshere%5Bpoint%5D=${data.lng}%2C${data.lat}&whatshere%5Bzoom%5D=16&z=16`,
     }),
   });
+
+  res.end();
 });
 
 app.listen(PORT, () => {
