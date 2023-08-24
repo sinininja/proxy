@@ -168,9 +168,9 @@ const sendReq = async function (data) {
       body: JSON.stringify(Object.fromEntries(data)),
     });
 
-    console.log(reqGet);
-    const res = await reqGet.json();
-    console.log(res);
+    // console.log(reqGet);
+    // const res = await reqGet.json();
+    // console.log(res);
     amount.value = "";
     phone.value = "";
 
